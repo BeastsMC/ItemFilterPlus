@@ -1,0 +1,7 @@
+banned-items:
+    - 46
+    - 326
+    - 327
+#ItemID of block to replace banned items found in ItemFrames
+replace:
+    itemframe: 1

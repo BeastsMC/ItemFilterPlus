@@ -1,0 +1,9 @@
+name: ItemFilter
+main: com.BeastsMC.ItemFilter
+version: 1.0
+commands:
+   itemfilter:
+      description: Main ItemFilter command
+      usage: /if [reload | print | purge]
+      permission: itemfilter.admin
+      aliases: if
