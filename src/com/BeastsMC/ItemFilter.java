@@ -1,5 +1,8 @@
 package com.BeastsMC;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +14,8 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.inventory.ItemStack;
@@ -19,7 +23,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class ItemFilter extends JavaPlugin {
 	public Logger log;
-	private Configuration fConf;
 	public List<Integer> bannedItemIds = new ArrayList<Integer>();
 	public Map<Integer, Enchantment> bannedItemIdsWithEnchants = new HashMap<Integer, Enchantment>();
 	public Material replaceItemFrameItem;
@@ -30,7 +33,16 @@ public class ItemFilter extends JavaPlugin {
 		loadConfig();
 	}
 	private void loadConfig() {
-		fConf = getConfig();
+		FileConfiguration fConf = getConfig();
+		try {
+			fConf.load(new File(getDataFolder(), "config.yml"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InvalidConfigurationException e) {
+			e.printStackTrace();
+		}
 		List<String> unparsedBannedItemIds = fConf.getStringList("banned-items");
 		for(String entry : unparsedBannedItemIds) {
 			try {
