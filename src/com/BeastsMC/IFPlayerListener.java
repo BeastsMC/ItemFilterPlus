@@ -1,5 +1,9 @@
 package com.BeastsMC;
 
+
+import java.util.Map;
+
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -51,6 +55,18 @@ public class IFPlayerListener implements Listener {
 		for(Integer bannedID : plugin.bannedItemIds) {
 			if(inven.contains(bannedID)) {
 				inven.remove(bannedID);
+			}
+		}
+		for(Integer bannedID : plugin.bannedItemIdsWithEnchants.keySet()) {
+			if(inven.contains(bannedID)) {
+				for(ItemStack item : inven.getContents()) {
+					if(item.getTypeId()==bannedID) {
+						Map<Enchantment, Integer> enchantments = item.getEnchantments();
+						if(enchantments.containsKey(plugin.bannedItemIdsWithEnchants.get(bannedID))) {
+							inven.remove(item);
+						}
+					}
+				}
 			}
 		}
 	}

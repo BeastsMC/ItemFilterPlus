@@ -1,4 +1,4 @@
-name: ItemFilter
+name: ItemFilterPlus
 main: com.BeastsMC.ItemFilter
 version: 1.0
 commands:

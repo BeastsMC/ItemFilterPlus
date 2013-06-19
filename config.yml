@@ -1,3 +1,8 @@
+#ItemID of items to be replaced
+#Enchanted items can be removed, too.
+#To remove an diamond sword with knockback, you would use 276:KNOCKBACK
+#You can view the names of all enchantments at http://jd.bukkit.org/rb/apidocs/org/bukkit/enchantments/Enchantment.html
+#NOTE: THE ENTIRE ITEM WILL BE REMOVED IF ONE ENCHANTMENT MATCHES. THE ENCHANMENT IS NOT JUST REMOVED FROM THE ITEM
 banned-items:
     - 46
     - 326
